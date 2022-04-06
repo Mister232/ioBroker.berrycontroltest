@@ -17,6 +17,7 @@ function main() {
 
     var deviceType = adapter.config.deviceType;
 	var deviceID = adapter.config.deviceID;
+	var readLine;
 	
 	// Log output
 	adapter.log.info('Device type: ' + deviceType);
@@ -29,39 +30,35 @@ function main() {
 		const lineReader = require('line-reader');
 		lineReader.eachLine('/home/pi/Programs/C/BerryControl/V3.0/sensorVals.txt',(line,last)=>{
 			adapter.log.info('Read from textfile: ' + line);
-			
-			adapter.setObject('windowContact' + deviceID, {
-				type: 'number',
-				common: {
-					name: 'windowContact' + deviceID,
-					type: 'number',
-					role: 'state'
-				},
-				native: {}
-			});
-		};
+			readLine = line;
+		})
+
+		adapter.setObject('windowContact' + deviceID, {
+			type: 'state',
+			common: {
+				name: 'windowContact' + deviceID,
+				type: 'boolean',
+				role: 'indicator'
+			},
+			native: {}
+		});
+		
+		adapter.setState('testVariable', true);
 	};
 
     // in this template all states changes inside the adapters namespace are subscribed
     adapter.subscribeStates('*');
 
 
-    /**
-     *   setState examples
-     *
-     *   you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
-     *
-     */
-
     // the variable testVariable is set to true as command (ack=false)
-    adapter.setState('testVariable', true);
+    //adapter.setState('testVariable', true);
 
     // same thing, but the value is flagged "ack"
     // ack should be always set to true if the value is received from or acknowledged from the target system
-    adapter.setState('testVariable', {val: true, ack: true});
+    //adapter.setState('testVariable', {val: true, ack: true});
 
     // same thing, but the state is deleted after 30s (getState will return null afterwards)
-    adapter.setState('testVariable', {val: true, ack: true, expire: 30});
+    //adapter.setState('testVariable', {val: true, ack: true, expire: 30});
 
 
 

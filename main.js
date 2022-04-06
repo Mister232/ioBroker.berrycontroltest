@@ -25,7 +25,9 @@ function main() {
 	// Window contact selected
 	if (deviceType == "windowContact"){
 		var ID = "3";
+		var readLine = GetLine();
 		
+		adapter.log.info('Read from textfile: ' + readLine);
 	};
 
     /**
@@ -82,4 +84,14 @@ function main() {
 
 
 
+}
+
+
+function GetLine() {
+  var fso, f, r;
+
+  f = fso.OpenTextFile("/home/pi/Programs/C/BerryControl/V3.0/sensorVals.txt", 1);
+  r =  f.ReadLine();
+  
+  return(r);
 }

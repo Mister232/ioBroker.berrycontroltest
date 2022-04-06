@@ -29,25 +29,17 @@ function main() {
 		const lineReader = require('line-reader');
 		lineReader.eachLine('/home/pi/Programs/C/BerryControl/V3.0/sensorVals.txt',(line,last)=>{
 			adapter.log.info('Read from textfile: ' + line);
+			
+			adapter.setObject('windowContact' + deviceID, {
+			type: 'number',
+			common: {
+				name: 'windowContact' + deviceID,
+				type: 'number',
+				role: 'state'
+        },
 		})
 	};
 
-    /**
-     *
-     *      For every state in the system there has to be also an object of type state
-     *
-     *      Here a simple template for a boolean variable named "testVariable"
-     *
-     *      Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
-     *
-     */
-
-    adapter.setObject('testVariable', {
-        type: 'state',
-        common: {
-            name: 'testVariable',
-            type: 'boolean',
-            role: 'indicator'
         },
         native: {}
     });

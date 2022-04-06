@@ -43,7 +43,7 @@ function main() {
 			native: {}
 		});
 		
-		adapter.setState('testVariable', true);
+		adapter.setState('windowContact' + deviceID, true);
 	};
 
     // in this template all states changes inside the adapters namespace are subscribed

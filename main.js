@@ -31,18 +31,15 @@ function main() {
 			adapter.log.info('Read from textfile: ' + line);
 			
 			adapter.setObject('windowContact' + deviceID, {
-			type: 'number',
-			common: {
-				name: 'windowContact' + deviceID,
 				type: 'number',
-				role: 'state'
-        },
-		})
+				common: {
+					name: 'windowContact' + deviceID,
+					type: 'number',
+					role: 'state'
+				},
+				native: {}
+			});
 	};
-
-        },
-        native: {}
-    });
 
     // in this template all states changes inside the adapters namespace are subscribed
     adapter.subscribeStates('*');

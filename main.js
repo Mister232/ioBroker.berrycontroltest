@@ -39,6 +39,7 @@ function main() {
 				},
 				native: {}
 			});
+		};
 	};
 
     // in this template all states changes inside the adapters namespace are subscribed

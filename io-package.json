@@ -29,15 +29,9 @@
         "icon": "berryControlLogo.png",
         "materialize": true,
         "enabled": true,
-<<<<<<< HEAD
         "extIcon": "https://raw.githubusercontent.com/Mister232/ioBroker.berrycontroltest/admin/berryControlLogo.png",
         "keywords": ["berrycontrol", "vis", "GUI", "graphical", "scada"],
         "readme": "https://github.com/Mister232/ioBroker.berrycontroltest/README.md",
-=======
-        "extIcon": "https://raw.githubusercontent.com/Mister232/ioBroker.berrycontroltest/main/admin/berryControlLogo.png",
-        "keywords": ["berrycontrol", "vis", "GUI", "graphical", "scada"],
-        "readme": "https://github.com/Mister232/ioBroker.berrycontroltest/blob/main/README.md",
->>>>>>> 7d6ea0f3d3cb3760b1e01b0504dcf1bae0eb5f00
         "loglevel": "info",
         "type": "general",
         "license": "MIT",

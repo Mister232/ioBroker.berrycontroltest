@@ -27,7 +27,7 @@ function main() {
 		var ID = "3";
 		
 		const lineReader = require('line-reader');
-		lineReader.eachLine('./demo.txt',(line,last)=>{
+		lineReader.eachLine('/home/pi/Programs/C/BerryControl/V3.0/sensorVals.txt',(line,last)=>{
 			adapter.log.info('Read from textfile: ' + line);
 		})
 	};

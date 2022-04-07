@@ -16,8 +16,8 @@ adapter.on('ready', function () {
 function main() {
 
     var deviceType = adapter.config.deviceType;
-	const readLine;
-	const splitReadLine;
+	var readLine;
+	var splitReadLine;
 	
 	// Log output
 	adapter.log.info('Selected device type: ' + deviceType);

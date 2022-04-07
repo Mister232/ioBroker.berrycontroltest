@@ -27,29 +27,28 @@ function main() {
 			adapter.log.info('Read from textfile: ' + line);
 			// Split read line to device type, address and value. Seperated by ','
 			var splitReadLine = line.split(",");
-			adapter.log.info('Read from textfile: ' + splitReadLine[1]);
 		});
 		
-		// if (splitReadLine[0] == '3') {
-			// adapter.setObject('windowContact' + splitReadLine[1] + '.State', {
-				// type: 'text',
-				// common: {
-					// name: 'windowContact' + splitReadLine[1] + '.State',
-					// type: 'text',
-					// role: 'state'
-				// },
-				// native: {}
-			// });
-			// adapter.setObject('windowContact' + splitReadLine[1] + '.Battery', {
-				// type: 'text',
-				// common: {
-					// name: 'windowContact' + splitReadLine[1] + '.Battery',
-					// type: 'text',
-					// role: 'state'
-				// },
-				// native: {}
-			// });
-		// };
+		if (splitReadLine[0] == '3') {
+			adapter.setObject('windowContact' + splitReadLine[1] + '.State', {
+				type: 'text',
+				common: {
+					name: 'windowContact' + splitReadLine[1] + '.State',
+					type: 'text',
+					role: 'state'
+				},
+				native: {}
+			});
+			adapter.setObject('windowContact' + splitReadLine[1] + '.Battery', {
+				type: 'text',
+				common: {
+					name: 'windowContact' + splitReadLine[1] + '.Battery',
+					type: 'text',
+					role: 'state'
+				},
+				native: {}
+			});
+		};
 		
 		// if (splitReadLine[2] == '0') {
 			// adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'open');

@@ -16,7 +16,7 @@ adapter.on('ready', function () {
 function main() {
 
     var deviceType = adapter.config.deviceType;
-	var splitReadLine;
+	const splitReadLine;
 	var testLine = '3,1,0';
 	
 	// Log output

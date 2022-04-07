@@ -88,12 +88,12 @@ function main() {
 					native: {}
 				});
 				adapter.setObject('socket' + splitReadLine[1] + '.State', {
-					type: 'boolean',
+					type: 'state',
 					common: {name: 'socket' + splitReadLine[1] + '.State'},
 					native: {}
 				});
 				adapter.setObject('socket' + splitReadLine[1] + '.setState', {
-					type: 'boolean',
+					type: 'state',
 					common: {name: 'socket' + splitReadLine[1] + '.setState'},
 					native: {}
 				});

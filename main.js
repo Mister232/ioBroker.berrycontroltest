@@ -30,19 +30,19 @@ function main() {
 			
 			if (splitReadLine[0] == '3') {
 				adapter.setObject('windowContact' + splitReadLine[1] + '.State', {
-					type: 'text',
+					type: 'string',
 					common: {
 						name: 'windowContact' + splitReadLine[1] + '.State',
-						type: 'text',
+						type: 'string',
 						role: 'state'
 					},
 					native: {}
 				});
 				adapter.setObject('windowContact' + splitReadLine[1] + '.Battery', {
-					type: 'text',
+					type: 'string',
 					common: {
 						name: 'windowContact' + splitReadLine[1] + '.Battery',
-						type: 'text',
+						type: 'string',
 						role: 'state'
 					},
 					native: {}

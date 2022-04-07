@@ -23,16 +23,16 @@ function main() {
 
 	// Window contact selected
 	if (deviceType == "windowContact"){
+		
+		adapter.log.debug('Test1');
 		const lineReader = require('line-reader');
+		adapter.log.debug('Test2');
+		
 		lineReader.eachLine(deviceStateList,(line,last) => {
 			adapter.log.debug('Read from textfile: ' + line);
 			
-			adapter.log.debug('Test1');
-			
 			// Split read line to device type, address and value. Seperated by ','
 			var splitReadLine = line.split(",");
-			
-			adapter.log.debug('Test2');
 			
 			if (splitReadLine[0] == '3') {
 				adapter.setObjectNotExists('windowContact' + splitReadLine[1] + '.Name', {

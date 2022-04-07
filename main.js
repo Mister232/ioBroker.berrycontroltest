@@ -26,8 +26,8 @@ function main() {
 		lineReader.eachLine('/home/pi/Programs/C/BerryControl/V3.0/sensorVals.txt',(line,last)=>{
 			adapter.log.info('Read from textfile: ' + line);
 			// Split read line to device type, address and value. Seperated by ','
-			let splitReadLine = line.split(",");
-			adapter.log.info('Read from textfile: ' + splitReadLine[0]);
+			var splitReadLine = line.split(",");
+			adapter.log.info('Read from textfile: ' + splitReadLine[1]);
 		});
 		
 		// if (splitReadLine[0] == '3') {

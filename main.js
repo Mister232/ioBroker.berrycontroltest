@@ -33,17 +33,17 @@ function main() {
 			
 			if (splitReadLine[0] == '3') {
 				adapter.setObjectNotExists('windowContact' + splitReadLine[1] + '.Name', {
-					type: 'string',
+					type: 'state',
 					common: {name: 'windowContact' + splitReadLine[1] + '.Name'},
 					native: {}
 				});
 				adapter.setObjectNotExists('windowContact' + splitReadLine[1] + '.State', {
-					type: 'string',
+					type: 'state',
 					common: {name: 'windowContact' + splitReadLine[1] + '.State'},
 					native: {}
 				});
 				adapter.setObjectNotExists('windowContact' + splitReadLine[1] + '.Battery', {
-					type: 'string',
+					type: 'state',
 					common: {name: 'windowContact' + splitReadLine[1] + '.Battery'},
 					native: {}
 				});
@@ -83,7 +83,7 @@ function main() {
 			
 			if (splitReadLine1[0] == '1') {
 				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.Name', {
-					type: 'string',
+					type: 'state',
 					common: {name: 'socket' + splitReadLine1[1] + '.Name'},
 					native: {}
 				});

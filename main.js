@@ -17,6 +17,7 @@ function main() {
 
     var deviceType = adapter.config.deviceType;
 	var splitReadLine;
+	var testLine = '3,1,0';
 	
 	// Log output
 	adapter.log.info('Selected device type: ' + deviceType);
@@ -27,7 +28,7 @@ function main() {
 		lineReader.eachLine('/home/pi/Programs/C/BerryControl/V3.0/sensorVals.txt',(line,last)=>{
 			adapter.log.info('Read from textfile: ' + line);
 			// Split read line to device type, address and value. Seperated by ','
-			splitReadLine = line.split(",");;
+			splitReadLine = testLine.split(",");;
 		})
 		
 		if (splitReadLine[0] == '3') {

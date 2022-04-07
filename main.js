@@ -55,15 +55,15 @@ function main() {
 		if (splitReadLine[2] == '0') {
 			adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'open');
 			adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'ok');
-		}else if (splitReadLine[2] == '1) {
+		}else if (splitReadLine[2] == '1') {
 			adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'close');
 			adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'ok');
-		}else if (splitReadLine[2] == '2) {
+		}else if (splitReadLine[2] == '2') {
 			adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'empty');
-		}else if (splitReadLine[2] == '3) {
+		}else if (splitReadLine[2] == '3') {
 			adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'open');
 			adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'empty');
-		}else if (splitReadLine[2] == '4) {
+		}else if (splitReadLine[2] == '4') {
 			adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'close');
 			adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'empty');
 		};

@@ -73,8 +73,7 @@ function main() {
 			};
 		});
 	// RF socket selected
-	};
-	else if (deviceType == "socket"){
+	} else if (deviceType == "socket"){
 		const lineReader1 = require('line-reader');
 		lineReader1.eachLine(deviceStateList,(line,last) => {
 			adapter.log.debug('Read from devicelist: ' + line);

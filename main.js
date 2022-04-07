@@ -16,61 +16,59 @@ adapter.on('ready', function () {
 function main() {
 
     var deviceType = adapter.config.deviceType;
-	var deviceID = adapter.config.deviceID;
-	var readLine;
 	
 	// Log output
-	adapter.log.info('Device type: ' + deviceType);
-    adapter.log.info('Device ID: ' + deviceID);
+	adapter.log.info('Selected device type: ' + deviceType);
 
 	// Window contact selected
 	if (deviceType == "windowContact"){
-		var ID = "3";
-		
 		const lineReader = require('line-reader');
 		lineReader.eachLine('/home/pi/Programs/C/BerryControl/V3.0/sensorVals.txt',(line,last)=>{
 			adapter.log.info('Read from textfile: ' + line);
-			readLine = line;
+			var readLine = line;
 		})
 
-		adapter.setObject('windowContact' + deviceID, {
-			type: 'state',
-			common: {
-				name: 'windowContact' + deviceID,
-				type: 'boolean',
-				role: 'indicator'
-			},
-			native: {}
-		});
+		// Split read line to device type, address and value. Seperated by ','
+		var splitReadLine = readLine.split(',');
 		
-		adapter.setState('windowContact' + deviceID, true);
+		if (splitReadLine[0] == '3') {
+			adapter.setObject('windowContact' + splitReadLine[1] + '.State', {
+				type: 'text',
+				common: {
+					name: 'windowContact' + splitReadLine[1] + '.State',
+					type: 'text',
+					role: 'state'
+				},
+				native: {}
+			});
+			adapter.setObject('windowContact' + splitReadLine[1] + '.Battery', {
+				type: 'text',
+				common: {
+					name: 'windowContact' + splitReadLine[1] + '.Battery',
+					type: 'text',
+					role: 'state'
+				},
+				native: {}
+			});
+		};
+		
+		if (splitReadLine[2] == '0') {
+			adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'open');
+			adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'ok');
+		}else if (splitReadLine[2] == '1) {
+			adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'close');
+			adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'ok');
+		}else if (splitReadLine[2] == '2) {
+			adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'empty');
+		}else if (splitReadLine[2] == '3) {
+			adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'open');
+			adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'empty');
+		}else if (splitReadLine[2] == '4) {
+			adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'close');
+			adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'empty');
+		};
 	};
 
     // in this template all states changes inside the adapters namespace are subscribed
     adapter.subscribeStates('*');
-
-
-    // the variable testVariable is set to true as command (ack=false)
-    //adapter.setState('testVariable', true);
-
-    // same thing, but the value is flagged "ack"
-    // ack should be always set to true if the value is received from or acknowledged from the target system
-    //adapter.setState('testVariable', {val: true, ack: true});
-
-    // same thing, but the state is deleted after 30s (getState will return null afterwards)
-    //adapter.setState('testVariable', {val: true, ack: true, expire: 30});
-
-
-
-    // examples for the checkPassword/checkGroup functions
-    adapter.checkPassword('admin', 'iobroker', function (res) {
-        console.log('check user admin pw ioboker: ' + res);
-    });
-
-    adapter.checkGroup('admin', 'admin', function (res) {
-        console.log('check group user admin group admin: ' + res);
-    });
-
-
-
 }

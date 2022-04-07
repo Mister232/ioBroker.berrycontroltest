@@ -2,7 +2,5 @@
   "Window contact": "Fensterkontakt",
   "Socket": "Steckdose",
   "Blind control": "Jalousiesteuerung",
-  "Device type": "Gerätetyp",
-  "Device ID": "Geräte ID",
-  "ID of the device": "ID des Gerätes",
+  "Device type": "Gerätetyp"
 }

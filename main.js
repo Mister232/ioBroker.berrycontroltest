@@ -31,7 +31,7 @@ function main() {
 		})
 
 		// Split read line to device type, address and value. Seperated by ','
-		splitReadLine = readLine.split(',');
+		splitReadLine = readLine.split(",");
 		
 		if (splitReadLine[0] == '3') {
 			adapter.setObject('windowContact' + splitReadLine[1] + '.State', {

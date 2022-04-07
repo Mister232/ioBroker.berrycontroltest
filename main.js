@@ -16,8 +16,6 @@ adapter.on('ready', function () {
 function main() {
 
     var deviceType = adapter.config.deviceType;
-	var readLine;
-	var splitReadLine;
 	
 	// Log output
 	adapter.log.info('Selected device type: ' + deviceType);
@@ -27,11 +25,9 @@ function main() {
 		const lineReader = require('line-reader');
 		lineReader.eachLine('/home/pi/Programs/C/BerryControl/V3.0/sensorVals.txt',(line,last)=>{
 			adapter.log.info('Read from textfile: ' + line);
-			readLine = line;
+			// Split read line to device type, address and value. Seperated by ','
+			const splitReadLine = line.split(",");;
 		})
-
-		// Split read line to device type, address and value. Seperated by ','
-		splitReadLine = readLine.split(",");
 		
 		if (splitReadLine[0] == '3') {
 			adapter.setObject('windowContact' + splitReadLine[1] + '.State', {

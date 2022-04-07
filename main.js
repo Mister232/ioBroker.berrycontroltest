@@ -27,8 +27,12 @@ function main() {
 		lineReader.eachLine(deviceStateList,(line,last) => {
 			adapter.log.debug('Read from textfile: ' + line);
 			
+			adapter.log.debug('Test1');
+			
 			// Split read line to device type, address and value. Seperated by ','
 			var splitReadLine = line.split(",");
+			
+			adapter.log.debug('Test2');
 			
 			if (splitReadLine[0] == '3') {
 				adapter.setObjectNotExists('windowContact' + splitReadLine[1] + '.Name', {
@@ -46,8 +50,6 @@ function main() {
 					common: {name: 'windowContact' + splitReadLine[1] + '.Battery'},
 					native: {}
 				});
-				
-				adapter.log.debug('Test');
 				
 				adapter.setState('windowContact' + splitReadLine[1]  + '.Name', splitReadLine[2]);
 				

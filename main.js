@@ -16,7 +16,8 @@ adapter.on('ready', function () {
 function main() {
 
     var deviceType = adapter.config.deviceType;
-	var readLine;
+	const readLine;
+	const splitReadLine;
 	
 	// Log output
 	adapter.log.info('Selected device type: ' + deviceType);
@@ -30,7 +31,7 @@ function main() {
 		})
 
 		// Split read line to device type, address and value. Seperated by ','
-		var splitReadLine = readLine.split(',');
+		splitReadLine = readLine.split(',');
 		
 		if (splitReadLine[0] == '3') {
 			adapter.setObject('windowContact' + splitReadLine[1] + '.State', {

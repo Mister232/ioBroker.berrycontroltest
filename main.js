@@ -30,41 +30,41 @@ function main() {
 			
 			if (splitReadLine[0] == '3') {
 				adapter.setObject('windowContact' + splitReadLine[1] + '.State', {
-					type: 'string',
+					type: 'state',
 					common: {
 						name: 'windowContact' + splitReadLine[1] + '.State',
-						type: 'string',
+						type: 'state',
 						role: 'state'
 					},
 					native: {}
 				});
 				adapter.setObject('windowContact' + splitReadLine[1] + '.Battery', {
-					type: 'string',
+					type: 'state',
 					common: {
 						name: 'windowContact' + splitReadLine[1] + '.Battery',
-						type: 'string',
+						type: 'state',
 						role: 'state'
 					},
 					native: {}
 				});
 			};
+			
+			if (splitReadLine[2] == '0') {
+				adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'open');
+				adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'ok');
+			}else if (splitReadLine[2] == '1') {
+				adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'close');
+				adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'ok');
+			}else if (splitReadLine[2] == '2') {
+				adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'empty');
+			}else if (splitReadLine[2] == '3') {
+				adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'open');
+				adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'empty');
+			}else if (splitReadLine[2] == '4') {
+				adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'close');
+				adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'empty');
+			};
 		});
-		
-		// if (splitReadLine[2] == '0') {
-			// adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'open');
-			// adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'ok');
-		// }else if (splitReadLine[2] == '1') {
-			// adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'close');
-			// adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'ok');
-		// }else if (splitReadLine[2] == '2') {
-			// adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'empty');
-		// }else if (splitReadLine[2] == '3') {
-			// adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'open');
-			// adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'empty');
-		// }else if (splitReadLine[2] == '4') {
-			// adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'close');
-			// adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'empty');
-		// };
 	};
 
     // in this template all states changes inside the adapters namespace are subscribed

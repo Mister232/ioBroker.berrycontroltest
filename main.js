@@ -23,10 +23,7 @@ function main() {
 
 	// Window contact selected
 	if (deviceType == "windowContact"){
-		
-		adapter.log.debug('Test1');
 		const lineReader = require('line-reader');
-		adapter.log.debug('Test2');
 		
 		lineReader.eachLine(deviceStateList,(line,last) => {
 			adapter.log.debug('Read from textfile: ' + line);

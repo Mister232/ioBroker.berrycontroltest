@@ -47,6 +47,8 @@ function main() {
 					native: {}
 				});
 				
+				adapter.log.debug('Test');
+				
 				adapter.setState('windowContact' + splitReadLine[1]  + '.Name', splitReadLine[2]);
 				
 				if (splitReadLine[3] == '0') {

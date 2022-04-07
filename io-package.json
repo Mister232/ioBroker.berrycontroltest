@@ -25,10 +25,11 @@
             "de": "docs/de/admin.md"
         },
         "platform": "Javascript/Node.js",
-        "mode": "daemon",
+        "mode": "deamon",
         "icon": "berryControlLogo.png",
         "materialize": true,
         "enabled": true,
+		"schedule": "1 0 * * *" ,
         "extIcon": "https://raw.githubusercontent.com/Mister232/ioBroker.berrycontroltest/admin/berryControlLogo.png",
         "keywords": ["berrycontrol", "vis", "GUI", "graphical", "scada"],
         "readme": "https://github.com/Mister232/ioBroker.berrycontroltest/README.md",

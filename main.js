@@ -74,43 +74,43 @@ function main() {
 		});
 	// RF socket selected
 	};
-	// else if (deviceType == "socket"){
-		// const lineReader1 = require('line-reader');
-		// lineReader1.eachLine(deviceStateList,(line,last) => {
-			// adapter.log.debug('Read from devicelist: ' + line);
+	else if (deviceType == "socket"){
+		const lineReader1 = require('line-reader');
+		lineReader1.eachLine(deviceStateList,(line,last) => {
+			adapter.log.debug('Read from devicelist: ' + line);
 			
-			// // Split read line to device type, address and name. Seperated by ';'
-			// var splitReadLine = line.split(";");
+			// Split read line to device type, address and name. Seperated by ';'
+			var splitReadLine = line.split(";");
 			
-			// if (splitReadLine[0] == '1') {
-				// adapter.setObject('socket' + splitReadLine[1] + '.Name', {
-					// type: 'string',
-					// common: {name: 'socket' + splitReadLine[1] + '.Name'},
-					// native: {}
-				// });
-				// adapter.setObject('socket' + splitReadLine[1] + '.State', {
-					// type: 'boolean',
-					// common: {name: 'socket' + splitReadLine[1] + '.State'},
-					// native: {}
-				// });
-				// adapter.setObject('socket' + splitReadLine[1] + '.setState', {
-					// type: 'boolean',
-					// common: {name: 'socket' + splitReadLine[1] + '.setState'},
-					// native: {}
-				// });
+			if (splitReadLine[0] == '1') {
+				adapter.setObject('socket' + splitReadLine[1] + '.Name', {
+					type: 'string',
+					common: {name: 'socket' + splitReadLine[1] + '.Name'},
+					native: {}
+				});
+				adapter.setObject('socket' + splitReadLine[1] + '.State', {
+					type: 'boolean',
+					common: {name: 'socket' + splitReadLine[1] + '.State'},
+					native: {}
+				});
+				adapter.setObject('socket' + splitReadLine[1] + '.setState', {
+					type: 'boolean',
+					common: {name: 'socket' + splitReadLine[1] + '.setState'},
+					native: {}
+				});
 				
-				// adapter.setState('windowContact' + splitReadLine[1]  + '.Name', splitReadLine[2]);
+				adapter.setState('windowContact' + splitReadLine[1]  + '.Name', splitReadLine[2]);
 				
-				// if (splitReadLine[3] == '0') {
-					// adapter.log.debug('Socket ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is switched off');
-					// adapter.setState('socket' + splitReadLine[1]  + '.State', false);
-				// }else if (splitReadLine[3] == '1') {
-					// adapter.log.debug('Socket ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is switched on');
-					// adapter.setState('socket' + splitReadLine[1]  + '.State', true);
+				if (splitReadLine[3] == '0') {
+					adapter.log.debug('Socket ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is switched off');
+					adapter.setState('socket' + splitReadLine[1]  + '.State', false);
+				}else if (splitReadLine[3] == '1') {
+					adapter.log.debug('Socket ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is switched on');
+					adapter.setState('socket' + splitReadLine[1]  + '.State', true);
 					
-				// // Check if current state = setState. If not, set new state
-				// };
-			// };
-		// });
-	// };
+				// Check if current state = setState. If not, set new state
+				};
+			};
+		});
+	};
 }

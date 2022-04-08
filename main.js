@@ -133,7 +133,7 @@ function main() {
 					fs.appendFile('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',0');
 				};
 
-				fs.writeFile('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1');
+				fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1');
 				
 			};
 		});

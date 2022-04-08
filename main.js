@@ -98,7 +98,7 @@ function main() {
 					native: {}
 				});
 				
-				adapter.setState('windowContact' + splitReadLine1[1]  + '.Name', splitReadLine1[2]);
+				adapter.setState('socket' + splitReadLine1[1]  + '.Name', splitReadLine1[2]);
 				
 				if (splitReadLine1[3] == '0') {
 					adapter.log.debug('Socket ' + splitReadLine1[2] + 'with ID ' + splitReadLine1[1] + ' is switched off');

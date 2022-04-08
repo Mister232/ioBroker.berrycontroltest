@@ -135,13 +135,13 @@ function main() {
 				};
 
 				try {
-				  fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', content)
+				  fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', content);
 				} catch (err) {
 				  adapter.log.debug(err);
 				};
 				
 				try {
-				  fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', content)
+				  fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', content);
 				} catch (err) {
 				  adapter.log.debug(err);
 				};

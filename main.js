@@ -37,6 +37,11 @@ function main() {
 					common: {name: 'windowContact' + splitReadLine[1] + '.Name'},
 					native: {}
 				});
+				adapter.setObjectNotExists('windowContact' + splitReadLine[1] + '.ID', {
+					type: 'state',
+					common: {name: 'windowContact' + splitReadLine[1] + '.ID'},
+					native: {}
+				});
 				adapter.setObjectNotExists('windowContact' + splitReadLine[1] + '.State', {
 					type: 'state',
 					common: {name: 'windowContact' + splitReadLine[1] + '.State'},
@@ -49,6 +54,7 @@ function main() {
 				});
 				
 				adapter.setState('windowContact' + splitReadLine[1]  + '.Name', splitReadLine[2]);
+				adapter.setState('windowContact' + splitReadLine[1]  + '.ID', splitReadLine[1]);
 				
 				if (splitReadLine[3] == '0') {
 					adapter.log.debug('Window contact ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is open and battery is ok');
@@ -87,6 +93,11 @@ function main() {
 					common: {name: 'socket' + splitReadLine1[1] + '.Name'},
 					native: {}
 				});
+				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.ID', {
+					type: 'state',
+					common: {name: 'socket' + splitReadLine1[1] + '.ID'},
+					native: {}
+				});
 				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.State', {
 					type: 'state',
 					common: {name: 'socket' + splitReadLine1[1] + '.State'},
@@ -99,6 +110,7 @@ function main() {
 				});
 				
 				adapter.setState('socket' + splitReadLine1[1]  + '.Name', splitReadLine1[2]);
+				adapter.setState('socket' + splitReadLine1[1]  + '.ID', splitReadLine1[1]);
 				
 				if (splitReadLine1[3] == '0') {
 					adapter.log.debug('Socket ' + splitReadLine1[2] + 'with ID ' + splitReadLine1[1] + ' is switched off');
@@ -106,9 +118,31 @@ function main() {
 				}else if (splitReadLine1[3] == '1') {
 					adapter.log.debug('Socket ' + splitReadLine1[2] + 'with ID ' + splitReadLine1[1] + ' is switched on');
 					adapter.setState('socket' + splitReadLine1[1]  + '.State', true);
-					
-				// Check if current state = setState. If not, set new state
 				};
+			};
+		
+		
+			// Check if current state = setState. If not, set new state
+			if ('socket' + splitReadLine1[1]  + '.State' != 'socket' + splitReadLine1[1] + '.setState') {
+				const fs = require('fs');
+				
+				if ('socket' + splitReadLine1[1] + '.setState' == true) {
+					const content = '1;' + splitReadLine1[1] + ';1';
+				} else if ('socket' + splitReadLine1[1] + '.setState' == true) {
+					const content = '1;' + splitReadLine1[1] + ';0';
+				};
+
+				fs.writeFile('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', content, err => {
+				  if (err) {
+					console.error(err)
+				  };
+				});
+				
+				fs.writeFile('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1', err => {
+				  if (err) {
+					console.error(err)
+				  };
+				});
 			};
 		});
 	};

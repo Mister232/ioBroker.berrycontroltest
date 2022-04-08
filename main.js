@@ -128,12 +128,11 @@ function main() {
 				const fs = require('fs');
 				
 				if ('socket' + splitReadLine1[1] + '.setState' == true) {
-					var content = '1,' + splitReadLine1[1] + ',1';
+					fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',1');
 				} else if ('socket' + splitReadLine1[1] + '.setState' == false) {
-					var content = '1,' + splitReadLine1[1] + ',0';
+					fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',0');
 				};
 
-				fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,1,0');
 				fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1');
 				
 			};

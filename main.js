@@ -132,17 +132,19 @@ function main() {
 					var content = '1;' + splitReadLine1[1] + ';0';
 				};
 
-				fs.writeFile('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', content, err => {
-				  if (err) {
-					adapter.log.debug(err)
-				  };
-				});
+				try {
+				  fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', content)
+				  //file written successfully
+				} catch (err) {
+				  console.error(err)
+				};
 				
-				fs.writeFile('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1', err => {
-				  if (err) {
-					adapter.log.debug(err)
-				  };
-				});
+				try {
+				  fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', content)
+				  //file written successfully
+				} catch (err) {
+				  console.error(err)
+				};
 			};
 		});
 	};

@@ -145,6 +145,8 @@ function main() {
 				} catch (err) {
 				  adapter.log.debug(err);
 				};
+			} else if () {
+				adapter.log.debug('No new state for socket' + splitReadLine1[1]);
 			};
 		});
 	};

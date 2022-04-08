@@ -121,6 +121,7 @@ function main() {
 				};
 			};
 		
+			adapter.log.debug('Test');
 		
 			// Check if current state = setState. If not, set new state
 			if ('socket' + splitReadLine1[1]  + '.State' != 'socket' + splitReadLine1[1] + '.setState') {
@@ -134,17 +135,9 @@ function main() {
 					var content = '1,' + splitReadLine1[1] + ',0';
 				};
 
-				try {
-				  fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', content);
-				} catch (err) {
-				  adapter.log.debug(err);
-				};
+				fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', content);
+				fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', content);
 				
-				try {
-				  fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', content);
-				} catch (err) {
-				  adapter.log.debug(err);
-				};
 			} else {
 				adapter.log.debug('No new state for socket' + splitReadLine1[1]);
 			};

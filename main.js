@@ -135,8 +135,8 @@ function main() {
 					var content = '1,' + splitReadLine1[1] + ',0';
 				};
 
-				fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', content);
-				fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', content);
+				fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,1,0');
+				fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1');
 				
 			} else {
 				adapter.log.debug('No new state for socket' + splitReadLine1[1]);

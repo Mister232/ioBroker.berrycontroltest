@@ -127,9 +127,9 @@ function main() {
 				const fs = require('fs');
 				
 				if ('socket' + splitReadLine1[1] + '.setState' == true) {
-					const content = '1;' + splitReadLine1[1] + ';1';
+					var content = '1;' + splitReadLine1[1] + ';1';
 				} else if ('socket' + splitReadLine1[1] + '.setState' == true) {
-					const content = '1;' + splitReadLine1[1] + ';0';
+					var content = '1;' + splitReadLine1[1] + ';0';
 				};
 
 				fs.writeFile('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', content, err => {

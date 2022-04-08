@@ -134,13 +134,13 @@ function main() {
 
 				fs.writeFile('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', content, err => {
 				  if (err) {
-					console.error(err)
+					adapter.log.debug(err)
 				  };
 				});
 				
 				fs.writeFile('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1', err => {
 				  if (err) {
-					console.error(err)
+					adapter.log.debug(err)
 				  };
 				});
 			};

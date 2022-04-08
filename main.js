@@ -57,22 +57,22 @@ function main() {
 				adapter.setState('windowContact' + splitReadLine[1]  + '.ID', splitReadLine[1]);
 				
 				if (splitReadLine[3] == '0') {
-					adapter.log.info('Window contact ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is open and battery is ok');
+					adapter.log.info('Window contact ' + splitReadLine[2] + ' with ID ' + splitReadLine[1] + ' is open and battery is ok');
 					adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'open');
 					adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'ok');
 				}else if (splitReadLine[3] == '1') {
-					adapter.log.info('Window contact ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is close and battery is ok');
+					adapter.log.info('Window contact ' + splitReadLine[2] + ' with ID ' + splitReadLine[1] + ' is close and battery is ok');
 					adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'close');
 					adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'ok');
 				}else if (splitReadLine[3] == '2') {
 					adapter.log.info('Battery of window contact ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is empty!');
 					adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'empty');
 				}else if (splitReadLine[3] == '3') {
-					adapter.log.info('Window contact ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is open and battery is empty!');
+					adapter.log.info('Window contact ' + splitReadLine[2] + ' with ID ' + splitReadLine[1] + ' is open and battery is empty!');
 					adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'open');
 					adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'empty');
 				}else if (splitReadLine[3] == '4') {
-					adapter.log.info('Window contact ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is close and battery is empty!');
+					adapter.log.info('Window contact ' + splitReadLine[2] + ' with ID ' + splitReadLine[1] + ' is close and battery is empty!');
 					adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'close');
 					adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'empty');
 				};
@@ -113,10 +113,10 @@ function main() {
 				adapter.setState('socket' + splitReadLine1[1]  + '.ID', splitReadLine1[1]);
 				
 				if (splitReadLine1[3] == '0') {
-					adapter.log.info('Socket ' + splitReadLine1[2] + 'with ID ' + splitReadLine1[1] + ' is switched off');
+					adapter.log.info('Socket ' + splitReadLine1[2] + ' with ID ' + splitReadLine1[1] + ' is switched off');
 					adapter.setState('socket' + splitReadLine1[1]  + '.State', false);
 				}else if (splitReadLine1[3] == '1') {
-					adapter.log.info('Socket ' + splitReadLine1[2] + 'with ID ' + splitReadLine1[1] + ' is switched on');
+					adapter.log.info('Socket ' + splitReadLine1[2] + ' with ID ' + splitReadLine1[1] + ' is switched on');
 					adapter.setState('socket' + splitReadLine1[1]  + '.State', true);
 				};
 			};
@@ -130,10 +130,10 @@ function main() {
 				if ('socket' + splitReadLine1[1] + '.setState' == true) {
 					fs.appendFile('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',1');
 				} else if ('socket' + splitReadLine1[1] + '.setState' == false) {
-					fs.writeFile('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',0');
+					fs.appendFile('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',0');
 				};
 
-				fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1');
+				fs.writeFile('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1');
 				
 			};
 		});

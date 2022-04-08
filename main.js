@@ -128,7 +128,7 @@ function main() {
 				
 				if ('socket' + splitReadLine1[1] + '.setState' == true) {
 					var content = '1;' + splitReadLine1[1] + ';1';
-				} else if ('socket' + splitReadLine1[1] + '.setState' == true) {
+				} else if ('socket' + splitReadLine1[1] + '.setState' == false) {
 					var content = '1;' + splitReadLine1[1] + ';0';
 				};
 

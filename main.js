@@ -122,7 +122,7 @@ function main() {
 			};
 		
 			// Check if current state = setState. If not, set new state
-			if ('socket' + splitReadLine1[1]  + '.State' != 'socket' + splitReadLine1[1] + '.setState') {
+			if (('socket' + splitReadLine1[1]  + '.State' != 'socket' + splitReadLine1[1] + '.setState') && ('socket' + splitReadLine1[1] + '.setState' != '')) {
 				adapter.log.info('New state for socket' + splitReadLine1[1]);
 				
 				const fs = require('fs');

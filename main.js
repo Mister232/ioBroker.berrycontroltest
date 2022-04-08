@@ -124,26 +124,26 @@ function main() {
 		
 			// Check if current state = setState. If not, set new state
 			if ('socket' + splitReadLine1[1]  + '.State' != 'socket' + splitReadLine1[1] + '.setState') {
+				adapter.log.debug('New state for socket' + splitReadLine1[1])
+				
 				const fs = require('fs');
 				
 				if ('socket' + splitReadLine1[1] + '.setState' == true) {
-					var content = '1;' + splitReadLine1[1] + ';1';
+					var content = '1,' + splitReadLine1[1] + ',1';
 				} else if ('socket' + splitReadLine1[1] + '.setState' == false) {
-					var content = '1;' + splitReadLine1[1] + ';0';
+					var content = '1,' + splitReadLine1[1] + ',0';
 				};
 
 				try {
 				  fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', content)
-				  //file written successfully
 				} catch (err) {
-				  console.error(err)
+				  adapter.log.debug(err);
 				};
 				
 				try {
 				  fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', content)
-				  //file written successfully
 				} catch (err) {
-				  console.error(err)
+				  adapter.log.debug(err);
 				};
 			};
 		});

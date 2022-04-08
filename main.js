@@ -26,7 +26,7 @@ function main() {
 		const lineReader = require('line-reader');
 		
 		lineReader.eachLine(deviceStateList,(line,last) => {
-			adapter.log.debug('Read from textfile: ' + line);
+			adapter.log.info('Read from textfile: ' + line);
 			
 			// Split read line to device type, address and value. Seperated by ','
 			var splitReadLine = line.split(";");
@@ -57,22 +57,22 @@ function main() {
 				adapter.setState('windowContact' + splitReadLine[1]  + '.ID', splitReadLine[1]);
 				
 				if (splitReadLine[3] == '0') {
-					adapter.log.debug('Window contact ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is open and battery is ok');
+					adapter.log.info('Window contact ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is open and battery is ok');
 					adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'open');
 					adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'ok');
 				}else if (splitReadLine[3] == '1') {
-					adapter.log.debug('Window contact ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is close and battery is ok');
+					adapter.log.info('Window contact ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is close and battery is ok');
 					adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'close');
 					adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'ok');
 				}else if (splitReadLine[3] == '2') {
-					adapter.log.warn('Battery of window contact ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is empty!');
+					adapter.log.info('Battery of window contact ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is empty!');
 					adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'empty');
 				}else if (splitReadLine[3] == '3') {
-					adapter.log.warn('Window contact ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is open and battery is empty!');
+					adapter.log.info('Window contact ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is open and battery is empty!');
 					adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'open');
 					adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'empty');
 				}else if (splitReadLine[3] == '4') {
-					adapter.log.warn('Window contact ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is close and battery is empty!');
+					adapter.log.info('Window contact ' + splitReadLine[2] + 'with ID ' + splitReadLine[1] + ' is close and battery is empty!');
 					adapter.setState('windowContact' + splitReadLine[1]  + '.State', 'close');
 					adapter.setState('windowContact' + splitReadLine[1]  + '.Battery', 'empty');
 				};
@@ -82,7 +82,7 @@ function main() {
 	} else if (deviceType == "socket"){
 		const lineReader1 = require('line-reader');
 		lineReader1.eachLine(deviceStateList,(line,last) => {
-			adapter.log.debug('Read from devicelist: ' + line);
+			adapter.log.info('Read from devicelist: ' + line);
 			
 			// Split read line to device type, address and name. Seperated by ';'
 			var splitReadLine1 = line.split(";");
@@ -113,19 +113,17 @@ function main() {
 				adapter.setState('socket' + splitReadLine1[1]  + '.ID', splitReadLine1[1]);
 				
 				if (splitReadLine1[3] == '0') {
-					adapter.log.debug('Socket ' + splitReadLine1[2] + 'with ID ' + splitReadLine1[1] + ' is switched off');
+					adapter.log.info('Socket ' + splitReadLine1[2] + 'with ID ' + splitReadLine1[1] + ' is switched off');
 					adapter.setState('socket' + splitReadLine1[1]  + '.State', false);
 				}else if (splitReadLine1[3] == '1') {
-					adapter.log.debug('Socket ' + splitReadLine1[2] + 'with ID ' + splitReadLine1[1] + ' is switched on');
+					adapter.log.info('Socket ' + splitReadLine1[2] + 'with ID ' + splitReadLine1[1] + ' is switched on');
 					adapter.setState('socket' + splitReadLine1[1]  + '.State', true);
 				};
 			};
 		
-			adapter.log.debug('Test');
-		
 			// Check if current state = setState. If not, set new state
 			if ('socket' + splitReadLine1[1]  + '.State' != 'socket' + splitReadLine1[1] + '.setState') {
-				adapter.log.debug('New state for socket' + splitReadLine1[1]);
+				adapter.log.info('New state for socket' + splitReadLine1[1]);
 				
 				const fs = require('fs');
 				
@@ -138,8 +136,6 @@ function main() {
 				fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,1,0');
 				fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1');
 				
-			} else {
-				adapter.log.debug('No new state for socket' + splitReadLine1[1]);
 			};
 		});
 	};

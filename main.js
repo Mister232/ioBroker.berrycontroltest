@@ -35,22 +35,22 @@ function main() {
 				
 				adapter.setObjectNotExists('windowContact' + splitReadLine[1] + '.Name', {
 					type: 'state',
-					common: {name: 'windowContact' + splitReadLine[1] + '.Name'},
+					common: {name: 'windowContact' + splitReadLine[1] + '.Name', type: 'state'},
 					native: {}
 				});
 				adapter.setObjectNotExists('windowContact' + splitReadLine[1] + '.ID', {
 					type: 'state',
-					common: {name: 'windowContact' + splitReadLine[1] + '.ID'},
+					common: {name: 'windowContact' + splitReadLine[1] + '.ID', type: 'state'},
 					native: {}
 				});
 				adapter.setObjectNotExists('windowContact' + splitReadLine[1] + '.State', {
 					type: 'state',
-					common: {name: 'windowContact' + splitReadLine[1] + '.State'},
+					common: {name: 'windowContact' + splitReadLine[1] + '.State', type: 'state'},
 					native: {}
 				});
 				adapter.setObjectNotExists('windowContact' + splitReadLine[1] + '.Battery', {
 					type: 'state',
-					common: {name: 'windowContact' + splitReadLine[1] + '.Battery'},
+					common: {name: 'windowContact' + splitReadLine[1] + '.Battery', type: 'state'},
 					native: {}
 				});
 				
@@ -92,22 +92,22 @@ function main() {
 				
 				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.Name', {
 					type: 'state',
-					common: {name: 'socket' + splitReadLine1[1] + '.Name'},
+					common: {name: 'socket' + splitReadLine1[1] + '.Name', type: 'state'},
 					native: {}
 				});
 				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.ID', {
 					type: 'state',
-					common: {name: 'socket' + splitReadLine1[1] + '.ID'},
+					common: {name: 'socket' + splitReadLine1[1] + '.ID', type: 'state'},
 					native: {}
 				});
 				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.State', {
 					type: 'state',
-					common: {name: 'socket' + splitReadLine1[1] + '.State'},
+					common: {name: 'socket' + splitReadLine1[1] + '.State', type: 'state'},
 					native: {}
 				});
 				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.setState', {
 					type: 'state',
-					common: {name: 'socket' + splitReadLine1[1] + '.setState'},
+					common: {name: 'socket' + splitReadLine1[1] + '.setState', type: 'state'},
 					native: {}
 				});
 				
@@ -129,16 +129,14 @@ function main() {
 					
 					if ('socket' + splitReadLine1[1] + '.setState' == true) {
 						adapter.log.info('New state for socket' + splitReadLine1[1] + ' true');
-						fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,1,1'); //'1,' + splitReadLine1[1] + ',1'
+						fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',1');
 					} else if ('socket' + splitReadLine1[1] + '.setState' == false) {
 						adapter.log.info('New state for socket' + splitReadLine1[1] + ' false');
-						fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,1,0');
+						fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',0');
 					};
 
 					fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1');
 					
-				} else {
-					adapter.log.info('Test1');
 				};
 			};
 		});

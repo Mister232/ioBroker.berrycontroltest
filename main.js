@@ -91,22 +91,22 @@ function main() {
 				adapter.log.info('Read from devicelist: ' + line);
 				
 				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.Name', {
-					type: 'state',
+					type: 'string',
 					common: {name: 'socket' + splitReadLine1[1] + '.Name', type: 'string'},
 					native: {}
 				});
 				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.ID', {
-					type: 'state',
+					type: 'string',
 					common: {name: 'socket' + splitReadLine1[1] + '.ID', type: 'string'},
 					native: {}
 				});
 				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.State', {
-					type: 'state',
+					type: 'boolean',
 					common: {name: 'socket' + splitReadLine1[1] + '.State', type: 'boolean'},
 					native: {}
 				});
 				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.setState', {
-					type: 'state',
+					type: 'boolean',
 					common: {name: 'socket' + splitReadLine1[1] + '.setState', type: 'boolean'},
 					native: {}
 				});

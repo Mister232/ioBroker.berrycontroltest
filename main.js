@@ -137,6 +137,8 @@ function main() {
 
 					fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1');
 					
+				} else {
+					adapter.log.info('Test1');
 				};
 			};
 		});

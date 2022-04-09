@@ -26,12 +26,13 @@ function main() {
 		const lineReader = require('line-reader');
 		
 		lineReader.eachLine(deviceStateList,(line,last) => {
-			adapter.log.info('Read from textfile: ' + line);
 			
 			// Split read line to device type, address and value. Seperated by ','
 			var splitReadLine = line.split(";");
 			
 			if (splitReadLine[0] == '3') {
+				adapter.log.info('Read from textfile: ' + line);
+				
 				adapter.setObjectNotExists('windowContact' + splitReadLine[1] + '.Name', {
 					type: 'state',
 					common: {name: 'windowContact' + splitReadLine[1] + '.Name'},
@@ -82,12 +83,13 @@ function main() {
 	} else if (deviceType == "socket"){
 		const lineReader1 = require('line-reader');
 		lineReader1.eachLine(deviceStateList,(line,last) => {
-			adapter.log.info('Read from devicelist: ' + line);
 			
 			// Split read line to device type, address and name. Seperated by ';'
 			var splitReadLine1 = line.split(";");
 			
 			if (splitReadLine1[0] == '1') {
+				adapter.log.info('Read from devicelist: ' + line);
+				
 				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.Name', {
 					type: 'state',
 					common: {name: 'socket' + splitReadLine1[1] + '.Name'},
@@ -121,7 +123,7 @@ function main() {
 				};
 				
 				// Check if current state = setState. If not, set new state
-				if (('socket' + splitReadLine1[1]  + '.State' != 'socket' + splitReadLine1[1] + '.setState') && ('socket' + splitReadLine1[1] + '.setState' != null)) {
+				if ((('socket' + splitReadLine1[1]  + '.State') != ('socket' + splitReadLine1[1] + '.setState')) && (('socket' + splitReadLine1[1] + '.setState') != null)) {
 					adapter.log.info('Test');
 					const fs = require('fs');
 					

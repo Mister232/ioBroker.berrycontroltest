@@ -124,6 +124,7 @@ function main() {
 				
 				// Check if current state = setState. If not, set new state
 				if ((adapter.getState('socket' + splitReadLine1[1]  + '.State') != adapter.getState('socket' + splitReadLine1[1] + '.setState')) && (adpater.getState('socket' + splitReadLine1[1] + '.setState') != null)) {
+					adapter.log.info('Test');
 					const fs = require('fs');
 					
 					if ('socket' + splitReadLine1[1] + '.setState' == true) {

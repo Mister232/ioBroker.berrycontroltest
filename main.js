@@ -136,8 +136,6 @@ function main() {
 
 					fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1');
 					
-				} else {
-					adapter.log.info('socket' + splitReadLine1[1] + ' state ' + adapter.getState('socket' + splitReadLine1[1]  + '.State') + ' = socket' + splitReadLine1[1] + ' setState ' + adpater.getState('socket' + splitReadLine1[1] + '.setState'));
 				};
 			};
 		});

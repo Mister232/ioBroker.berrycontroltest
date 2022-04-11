@@ -14,11 +14,21 @@ adapter.on('ready', function () {
 });
 
 
-adapter.on('stateChange', function (id, state) {
-    // Warning, state can be null if it was deleted
-    adapter.log.info('stateChange ' + id + ' ' + state.val);
+adapter.on('stateChange', function (objectName, state) {
+	const fs = require('fs');
+	
+	let objectNameSplitted = objectName.split(".");
+	var deviceID = objectNameSplitted[2];
+	
+	adapter.log.info('New state for ' + objectName + ' is ' + state.val);
 
-    
+	if (state.val == 'on') {
+		fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + deviceID.substring(6) + ',1');
+	} else if (state.val == 'off') {
+		fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + deviceID.substring(6) + ',0');
+	};
+	
+	fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1');
 });
 
 function main() {
@@ -135,26 +145,26 @@ function main() {
 				};
 				
 				
-				adapter.getState('socket' + splitReadLine1[1]  + '.State', (err,state) =>
-				{
-					adapter.getState('socket' + splitReadLine1[1]  + '.setState', (err,setState) =>
-					{
-						//Check if current state = setState. If not, set new state
-						if (state.val != setState.val) {
-							const fs = require('fs');
+				// adapter.getState('socket' + splitReadLine1[1]  + '.State', (err,state) =>
+				// {
+					// adapter.getState('socket' + splitReadLine1[1]  + '.setState', (err,setState) =>
+					// {
+						// //Check if current state = setState. If not, set new state
+						// if (state.val != setState.val) {
+							// const fs = require('fs');
 							
-							if (setState.val == 'on') {
-								adapter.log.info('New state for socket' + splitReadLine1[1] + ' on');
-								fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',1');
-							} else if (setState.val == 'off') {
-								adapter.log.info('New state for socket' + splitReadLine1[1] + ' off');
-								fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',0');
-							};
+							// if (setState.val == 'on') {
+								// adapter.log.info('New state for socket' + splitReadLine1[1] + ' on');
+								// fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',1');
+							// } else if (setState.val == 'off') {
+								// adapter.log.info('New state for socket' + splitReadLine1[1] + ' off');
+								// fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',0');
+							// };
 							
-							fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1');
-						};
-					});
-				});
+							// fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1');
+						// };
+					// });
+				// });
 			};
 		});
 	};

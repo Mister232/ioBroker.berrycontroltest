@@ -22,7 +22,7 @@ adapter.on('stateChange', function (objectName, state) {
 	
 	adapter.log.info('New state for ' + objectName + ' is ' + state.val);
 	
-	if (deviceID.indexOf("socket") > 0) {
+	if (objectName.indexOf("socket")) {
 		adapter.log.info('Test');
 		if (state.val == 'on') {
 			fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + deviceID.substring(6) + ',1');

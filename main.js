@@ -103,12 +103,12 @@ function main() {
 				});
 				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.State', {
 					type: 'state',
-					common: {name: 'socket' + splitReadLine1[1] + '.State', type: 'boolean'},
+					common: {name: 'socket' + splitReadLine1[1] + '.State', type: 'string'},
 					native: {}
 				});
 				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.setState', {
 					type: 'state',
-					common: {name: 'socket' + splitReadLine1[1] + '.setState', type: 'boolean'},
+					common: {name: 'socket' + splitReadLine1[1] + '.setState', type: 'string'},
 					native: {}
 				});
 				
@@ -117,10 +117,10 @@ function main() {
 				
 				if (splitReadLine1[3] == '0') {
 					adapter.log.info('Socket ' + splitReadLine1[2] + ' with ID ' + splitReadLine1[1] + ' is switched off');
-					adapter.setState('socket' + splitReadLine1[1]  + '.State', false);
+					adapter.setState('socket' + splitReadLine1[1]  + '.State', 'off');
 				}else if (splitReadLine1[3] == '1') {
 					adapter.log.info('Socket ' + splitReadLine1[2] + ' with ID ' + splitReadLine1[1] + ' is switched on');
-					adapter.setState('socket' + splitReadLine1[1]  + '.State', true);
+					adapter.setState('socket' + splitReadLine1[1]  + '.State', 'on');
 				};
 				
 				// Check if current state = setState. If not, set new state
@@ -128,11 +128,11 @@ function main() {
 					adapter.log.info('Test');
 					const fs = require('fs');
 					
-					if ('socket' + splitReadLine1[1] + '.setState' == true) {
+					if ('socket' + splitReadLine1[1] + '.setState' == 'on') {
 						adapter.log.info('New state for socket' + splitReadLine1[1] + ' true');
 						fs.appendFile('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',1');
 						newStateSet = true;
-					} else if ('socket' + splitReadLine1[1] + '.setState' == false) {
+					} else if ('socket' + splitReadLine1[1] + '.setState' == 'off') {
 						adapter.log.info('New state for socket' + splitReadLine1[1] + ' false');
 						fs.appendFile('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',0');
 						newStateSet = true;

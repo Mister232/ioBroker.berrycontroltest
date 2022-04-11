@@ -137,7 +137,9 @@ function main() {
 						fs.appendFile('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',0');
 						newStateSet = true;
 					};
-				};
+				} else {
+					adapter.log.info('Current state: ' + adapter.getState('socket' + splitReadLine1[1]  + '.State') + ' , set state: ' + adapter.getState('socket' + splitReadLine1[1] + '.setState'));
+				{;
 			};
 		});
 	};

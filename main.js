@@ -21,14 +21,17 @@ adapter.on('stateChange', function (objectName, state) {
 	var deviceID = objectNameSplitted[2];
 	
 	adapter.log.info('New state for ' + objectName + ' is ' + state.val);
-
-	if (state.val == 'on') {
-		fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + deviceID.substring(6) + ',1');
-	} else if (state.val == 'off') {
-		fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + deviceID.substring(6) + ',0');
-	};
 	
-	fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1');
+	if (deviceID.indexOf("socket") > 0) {
+		adapter.log.info('Test');
+		if (state.val == 'on') {
+			fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + deviceID.substring(6) + ',1');
+		} else if (state.val == 'off') {
+			fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + deviceID.substring(6) + ',0');
+		};
+		
+		fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1');
+	};
 });
 
 function main() {

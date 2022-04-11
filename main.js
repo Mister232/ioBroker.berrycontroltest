@@ -35,22 +35,22 @@ function main() {
 				
 				adapter.setObjectNotExists('windowContact' + splitReadLine[1] + '.Name', {
 					type: 'state',
-					common: {name: 'windowContact' + splitReadLine[1] + '.Name', type: 'state'},
+					common: {name: 'windowContact' + splitReadLine[1] + '.Name', type: 'string'},
 					native: {}
 				});
 				adapter.setObjectNotExists('windowContact' + splitReadLine[1] + '.ID', {
 					type: 'state',
-					common: {name: 'windowContact' + splitReadLine[1] + '.ID', type: 'state'},
+					common: {name: 'windowContact' + splitReadLine[1] + '.ID', type: 'number'},
 					native: {}
 				});
 				adapter.setObjectNotExists('windowContact' + splitReadLine[1] + '.State', {
 					type: 'state',
-					common: {name: 'windowContact' + splitReadLine[1] + '.State', type: 'state'},
+					common: {name: 'windowContact' + splitReadLine[1] + '.State', type: 'string'},
 					native: {}
 				});
 				adapter.setObjectNotExists('windowContact' + splitReadLine[1] + '.Battery', {
 					type: 'state',
-					common: {name: 'windowContact' + splitReadLine[1] + '.Battery', type: 'state'},
+					common: {name: 'windowContact' + splitReadLine[1] + '.Battery', type: 'string'},
 					native: {}
 				});
 				
@@ -91,22 +91,22 @@ function main() {
 				adapter.log.info('Read from devicelist: ' + line);
 				
 				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.Name', {
-					type: 'string',
+					type: 'state',
 					common: {name: 'socket' + splitReadLine1[1] + '.Name', type: 'string'},
 					native: {}
 				});
 				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.ID', {
-					type: 'string',
-					common: {name: 'socket' + splitReadLine1[1] + '.ID', type: 'string'},
+					type: 'state',
+					common: {name: 'socket' + splitReadLine1[1] + '.ID', type: 'number'},
 					native: {}
 				});
 				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.State', {
-					type: 'boolean',
+					type: 'state',
 					common: {name: 'socket' + splitReadLine1[1] + '.State', type: 'boolean'},
 					native: {}
 				});
 				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.setState', {
-					type: 'boolean',
+					type: 'state',
 					common: {name: 'socket' + splitReadLine1[1] + '.setState', type: 'boolean'},
 					native: {}
 				});

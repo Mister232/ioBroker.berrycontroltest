@@ -40,7 +40,7 @@ function main() {
 				});
 				adapter.setObjectNotExists('windowContact' + splitReadLine[1] + '.ID', {
 					type: 'state',
-					common: {name: 'windowContact' + splitReadLine[1] + '.ID', type: 'number'},
+					common: {name: 'windowContact' + splitReadLine[1] + '.ID', type: 'string'},
 					native: {}
 				});
 				adapter.setObjectNotExists('windowContact' + splitReadLine[1] + '.State', {
@@ -97,7 +97,7 @@ function main() {
 				});
 				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.ID', {
 					type: 'state',
-					common: {name: 'socket' + splitReadLine1[1] + '.ID', type: 'number'},
+					common: {name: 'socket' + splitReadLine1[1] + '.ID', type: 'string'},
 					native: {}
 				});
 				adapter.setObjectNotExists('socket' + splitReadLine1[1] + '.State', {

@@ -133,10 +133,10 @@ function main() {
 							
 							if (setState.val == 'on') {
 								adapter.log.info('New state for socket' + splitReadLine1[1] + ' on');
-								fs.appendFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',1');
+								fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',1');
 							} else if (setState.val == 'off') {
 								adapter.log.info('New state for socket' + splitReadLine1[1] + ' off');
-								fs.appendFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',0');
+								fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',0');
 							};
 							
 							fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1');

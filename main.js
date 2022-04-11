@@ -124,16 +124,16 @@ function main() {
 				};
 				
 				// Check if current state = setState. If not, set new state
-				if (adapter.getState('socket' + splitReadLine1[1]  + '.State') != adapter.getState('socket' + splitReadLine1[1] + '.setState')) {
+				if (adapter.getState('socket' + splitReadLine1[1]  + '.State').val != adapter.getState('socket' + splitReadLine1[1] + '.setState').val) {
 					adapter.log.info('Test');
 					const fs = require('fs');
 					
-					if ('socket' + splitReadLine1[1] + '.setState' == 'on') {
-						adapter.log.info('New state for socket' + splitReadLine1[1] + ' true');
+					if (adapter.getState('socket' + splitReadLine1[1] + '.setState').val == 'on') {
+						adapter.log.info('New state for socket' + splitReadLine1[1] + ' on');
 						fs.appendFile('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',1');
 						newStateSet = true;
-					} else if ('socket' + splitReadLine1[1] + '.setState' == 'off') {
-						adapter.log.info('New state for socket' + splitReadLine1[1] + ' false');
+					} else if (adapter.getState('socket' + splitReadLine1[1] + '.setState').val == 'off') {
+						adapter.log.info('New state for socket' + splitReadLine1[1] + ' off');
 						fs.appendFile('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',0');
 						newStateSet = true;
 					};

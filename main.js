@@ -139,7 +139,7 @@ function main() {
 					};
 				} else {
 					adapter.log.info('Current state: ' + adapter.getState('socket' + splitReadLine1[1]  + '.State') + ' , set state: ' + adapter.getState('socket' + splitReadLine1[1] + '.setState'));
-				{;
+				};
 			};
 		});
 	};

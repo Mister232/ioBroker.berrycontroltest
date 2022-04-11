@@ -13,6 +13,14 @@ adapter.on('ready', function () {
     main();
 });
 
+
+adapter.on('stateChange', function (id, state) {
+    // Warning, state can be null if it was deleted
+    adapter.log.info('stateChange ' + id + ' ' + state.val);
+
+    
+});
+
 function main() {
 
     var deviceType = adapter.config.deviceType;
@@ -53,6 +61,8 @@ function main() {
 					common: {name: 'windowContact' + splitReadLine[1] + '.Battery', type: 'string'},
 					native: {}
 				});
+				
+				adapter.subscribeStates('*');
 				
 				adapter.setState('windowContact' + splitReadLine[1]  + '.Name', splitReadLine[2]);
 				adapter.setState('windowContact' + splitReadLine[1]  + '.ID', splitReadLine[1]);
@@ -110,6 +120,8 @@ function main() {
 					common: {name: 'socket' + splitReadLine1[1] + '.setState', type: 'string'},
 					native: {}
 				});
+				
+				adapter.subscribeStates('*');
 				
 				adapter.setState('socket' + splitReadLine1[1]  + '.Name', splitReadLine1[2]);
 				adapter.setState('socket' + splitReadLine1[1]  + '.ID', splitReadLine1[1]);

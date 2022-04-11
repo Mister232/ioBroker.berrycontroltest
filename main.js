@@ -124,27 +124,26 @@ function main() {
 				};
 				
 				
-				let result = adapter.getState('socket' + splitReadLine1[1]  + '.State', (err,state) =>
+				adapter.getState('socket' + splitReadLine1[1]  + '.State', (err,state) =>
 				{
-					adapter.log.info('State ' + 'socket' + splitReadLine1[1] + ': ' + state.val)
+					adapter.getState('socket' + splitReadLine1[1]  + '.setState', (err,setState) =>
+					{
+						//Check if current state = setState. If not, set new state
+						if (state.val != setState.val) {
+							const fs = require('fs');
+							
+							if (setState.val == 'on') {
+								adapter.log.info('New state for socket' + splitReadLine1[1] + ' on');
+								fs.appendFile('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',1');
+								newStateSet = true;
+							} else if (setState.val == 'off') {
+								adapter.log.info('New state for socket' + splitReadLine1[1] + ' off');
+								fs.appendFile('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',0');
+								newStateSet = true;
+							};
+						};
+					});
 				});
-				// Check if current state = setState. If not, set new state
-				// if ((await adapter.getStateAsync('socket' + splitReadLine1[1]  + '.State')) != (await adapter.getStateAsync('socket' + splitReadLine1[1] + '.setState'))) {
-					// adapter.log.info('Test');
-					// const fs = require('fs');
-					
-					// if (adapter.getStateAsync('socket' + splitReadLine1[1] + '.setState') == 'on') {
-						// adapter.log.info('New state for socket' + splitReadLine1[1] + ' on');
-						// fs.appendFile('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',1');
-						// newStateSet = true;
-					// } else if (adapter.getStateAsync('socket' + splitReadLine1[1] + '.setState') == 'off') {
-						// adapter.log.info('New state for socket' + splitReadLine1[1] + ' off');
-						// fs.appendFile('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',0');
-						// newStateSet = true;
-					// };
-				// } else {
-					// adapter.log.info('Current state: ' + adapter.getStateAsync('socket' + splitReadLine1[1]  + '.State') + ' , set state: ' + adapter.getStateAsync('socket' + splitReadLine1[1] + '.setState'));
-				// };
 			};
 		});
 	};

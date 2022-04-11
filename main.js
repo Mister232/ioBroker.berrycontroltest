@@ -17,6 +17,7 @@ function main() {
 
     var deviceType = adapter.config.deviceType;
 	var deviceStateList = '/home/pi/Programs/C/BerryControl/V3.0/deviceStateList.txt';
+	var newStateSet = false;
 	
 	// Log output
 	adapter.log.info('Selected device type: ' + deviceType);
@@ -129,16 +130,20 @@ function main() {
 					
 					if ('socket' + splitReadLine1[1] + '.setState' == true) {
 						adapter.log.info('New state for socket' + splitReadLine1[1] + ' true');
-						fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',1');
+						fs.appendFile('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',1');
+						newStateSet = true;
 					} else if ('socket' + splitReadLine1[1] + '.setState' == false) {
 						adapter.log.info('New state for socket' + splitReadLine1[1] + ' false');
-						fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',0');
+						fs.appendFile('/home/pi/Programs/C/BerryControl/V3.0/actuatorCMD1.txt', '1,' + splitReadLine1[1] + ',0');
+						newStateSet = true;
 					};
-
-					fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1');
-					
 				};
 			};
 		});
+	};
+	
+	// If a new state for an actuator was set, set cmdAval1, so Berry-Control can execute it
+	if (newStateSet == true) {
+		fs.writeFileSync('/home/pi/Programs/C/BerryControl/V3.0/cmdAval1.txt', '1');
 	};
 }

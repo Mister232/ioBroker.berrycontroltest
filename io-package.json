@@ -25,7 +25,7 @@
             "de": "docs/de/admin.md"
         },
         "platform": "Javascript/Node.js",
-        "mode": "schedule",
+        "mode": "daemon",
         "icon": "berryControlLogo.png",
         "materialize": true,
         "enabled": true,

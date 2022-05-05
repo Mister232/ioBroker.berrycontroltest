@@ -188,6 +188,7 @@ function main() {
 			// Split read line to device type, address and name. Seperated by ';'
 			var splitReadLine1 = line.split(",");
 			
+			
 			if (splitReadLine1[0] == '2') {
 				adapter.log.info('Read from devicelist: ' + line);
 				
@@ -234,4 +235,63 @@ function main() {
 			};
 		});
 	};
+	
+	// Check for new states from BerryControl
+	const fs = require('fs');
+
+	fs.watchFile(deviceStateList, (curr, prev) => {
+		
+		const lineReaderRefresh = require('line-reader');
+		lineReaderRefresh.eachLine(deviceStateList,(line,last) => {
+			
+			// Split read line to device type, address and value. Seperated by ','
+			var splitReadLineRefresh = line.split(",");
+			
+			if (splitReadLineRefresh[0] == '3') {
+				
+				if (splitReadLineRefresh[3] == '0') {
+					
+					adapter.setState('windowContact' + splitReadLineRefresh[1]  + '.State', 'open');
+					adapter.setState('windowContact' + splitReadLineRefresh[1]  + '.Battery', 'ok');
+					
+				}else if (splitReadLineRefresh[3] == '1') {
+					
+					adapter.setState('windowContact' + splitReadLineRefresh[1]  + '.State', 'close');
+					adapter.setState('windowContact' + splitReadLineRefresh[1]  + '.Battery', 'ok');
+					
+				}else if (splitReadLineRefresh[3] == '2') {
+					
+					adapter.setState('windowContact' + splitReadLineRefresh[1]  + '.Battery', 'empty');
+					
+				}else if (splitReadLineRefresh[3] == '3') {
+					
+					adapter.setState('windowContact' + splitReadLineRefresh[1]  + '.State', 'open');
+					adapter.setState('windowContact' + splitReadLineRefresh[1]  + '.Battery', 'empty');
+					
+				}else if (splitReadLineRefresh[3] == '4') {
+					
+					adapter.setState('windowContact' + splitReadLineRefresh[1]  + '.State', 'close');
+					adapter.setState('windowContact' + splitReadLineRefresh[1]  + '.Battery', 'empty');
+					
+				};
+				
+			} else if (splitReadLineRefresh[0] == '2') {
+				
+				adapter.setState('blind' + splitReadLineRefresh[1]  + '.State', splitReadLineRefresh[3]);
+				
+			} else if (splitReadLineRefresh[0] == '1') {
+				
+				if (splitReadLineRefresh[3] == '0') {
+					
+					adapter.setState('socket' + splitReadLineRefresh[1]  + '.State', 'off');
+					
+				}else if (splitReadLineRefresh[3] == '1') {
+					
+					adapter.setState('socket' + splitReadLineRefresh[1]  + '.State', 'on');
+					
+				};
+				
+			};
+		});
+	});
 }
